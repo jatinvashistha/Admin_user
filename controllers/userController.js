@@ -125,12 +125,13 @@ export const changePassword = catchAsyncError(async (req, res, next) => {
 // update profile
 
 export const updateProfile = catchAsyncError(async (req, res, next) => {
-  const { name, email } = req.body;
+  const { name, email, phoneNumber } = req.body;
 
   const user = await User.findById(req.user._id);
 
   if (name) user.name = name;
   if (email) user.email = email;
+  if (phoneNumber) user.phoneNumber = phoneNumber;
 
   await user.save();
 
